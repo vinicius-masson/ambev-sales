@@ -26,7 +26,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Mapping
             builder.Property(s => s.Status).IsRequired().HasConversion<string>().HasMaxLength(20);
 
             builder.HasMany(s => s.Products)
-                .WithOne()
+                .WithOne(p => p.Sale)
                 .HasForeignKey("SaleId")
                 .IsRequired(true);
 
