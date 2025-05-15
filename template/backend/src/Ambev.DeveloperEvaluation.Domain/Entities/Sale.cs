@@ -12,9 +12,9 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
             Customer = customer;
             Branch = branch;
 
-            Number = new Random(1000).Next();
+            Number = new Random().Next();
             Status = SaleStatus.NotCancelled;
-            SaleDate = DateTime.Now;
+            SaleDate = DateTime.UtcNow;
             Products = new List<Product>();
         }
 
@@ -49,6 +49,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         public void AddProduct(Product product)
         {
             Products.Add(product);
+            product.Sale = this;
             CalculateTotalSale();
         }
 
@@ -61,6 +62,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
             product.CancelProduct();
             CalculateTotalSale();
         }
+
+        public void ClearProducts() => Products.Clear();
 
         private void CalculateTotalSale() => TotalSaleAmount = Products.Where(x => x.Status == ProductStatus.NotCancelled).Sum(x => x.TotalPrice);
     }
