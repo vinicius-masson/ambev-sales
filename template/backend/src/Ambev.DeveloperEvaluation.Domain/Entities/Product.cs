@@ -24,6 +24,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         public decimal Discount { get; private set; }
         public decimal TotalPrice { get; private set; }
         public ProductStatus Status { get; private set; }
+        public Guid SaleId { get; private set; }
+        public Sale Sale { get; set; }
 
         public void SetName(string name)
         {
