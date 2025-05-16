@@ -84,3 +84,7 @@ This section includes links to the detailed documentation for the different API 
 This section describes the overall structure and organization of the project files and directories. 
 
 See [Project Structure](/.doc/project-structure.md)
+
+## How to Run the Project
+This section provides detailed instructions on how to set up and run the project.
+For full setup and execution steps, please see the [instructions.md](/.doc/instructions.md) file.
