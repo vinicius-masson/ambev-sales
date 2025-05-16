@@ -178,18 +178,19 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         [ProducesResponseType(typeof(ApiResponseWithData<GetSaleResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetAllSales(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAllSales([FromQuery] GetAllSalesRequest request, CancellationToken cancellationToken)
         {
-            var command = new GetAllSalesCommand();
+            var validator = new GetAllSalesRequestValidator();
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
+
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
+            var command = new GetAllSalesCommand { PageNumber = request.PageNumber, PageSize = request.PageSize};
 
             var response = await _mediator.Send(command, cancellationToken);
 
-            return Ok(new ApiResponseWithData<List<GetSaleResponse>>
-            {
-                Success = true,
-                Message = "Sale retrieved successfully",
-                Data = _mapper.Map<List<GetSaleResponse>>(response)
-            });
+            return OkPaginated(response);
         }
     }
 }

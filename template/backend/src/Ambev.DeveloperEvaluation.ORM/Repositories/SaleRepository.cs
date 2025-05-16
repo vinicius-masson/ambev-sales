@@ -52,9 +52,9 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         /// <param name="sale">The unique identifier of the sale</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The sale if found, null otherwise</returns>
-        public async Task<List<Sale>> GetAllAsync(CancellationToken cancellationToken = default)
+        public IQueryable<Sale?> GetAll(CancellationToken cancellationToken = default)
         {
-            return await _context.Sales.Include(s => s.Products).ToListAsync();
+            return _context.Sales.Include(s => s.Products).AsQueryable();
         }
 
         /// <summary>

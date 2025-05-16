@@ -23,12 +23,6 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
         /// <returns>The sale if found, null otherwise</returns>
         Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-
-
-
-
-
-
         /// <summary>
         /// Retrieves a sale by an product id
         /// </summary>
@@ -37,21 +31,13 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
         /// <returns>The sale if found, null otherwise</returns>
         Task<Sale?> GetByProductIdAsync(Guid productid, CancellationToken cancellationToken = default);
 
-
-
-
-
-
-
-
-
         /// <summary>
         /// Retrieves all sales
         /// </summary>
         /// <param name="sale">The unique identifier of the sale</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The sale if found, null otherwise</returns>
-        Task<List<Sale?>> GetAllAsync(CancellationToken cancellationToken = default);
+        IQueryable<Sale?> GetAll(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a sale from the repository

@@ -13,7 +13,8 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
         /// </summary>
         public GetSaleProfile()
         {
-            CreateMap<Sale, GetSaleResult>();
+            CreateMap<Sale, GetSaleResult>()
+                .ForMember(dest => dest.SaleDate, opt => opt.MapFrom(src => src.SaleDate.ToString("dd/MM/yyyy HH:mm")));
         }
     }
 }

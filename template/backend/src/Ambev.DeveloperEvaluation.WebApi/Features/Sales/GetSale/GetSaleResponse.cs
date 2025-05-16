@@ -13,5 +13,10 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale
         public string Branch { get; set; } = string.Empty;
         public List<ProductDTO> Products { get; set; } = new List<ProductDTO>();
         public string Status { get; set; } = string.Empty;
+
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
+        public int PageSize { get; set; }
+        public int TotalCount { get; set; }
     }
 }
