@@ -54,7 +54,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         /// <returns>The sale if found, null otherwise</returns>
         public IQueryable<Sale?> GetAll(CancellationToken cancellationToken = default)
         {
-            return _context.Sales.Include(s => s.Products).AsQueryable();
+            return _context.Sales.Include(s => s.Products).AsQueryable().AsNoTracking();
         }
 
         /// <summary>
