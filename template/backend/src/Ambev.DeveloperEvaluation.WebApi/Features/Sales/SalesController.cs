@@ -3,15 +3,11 @@ using Ambev.DeveloperEvaluation.Application.Sales.DeleteSale;
 using Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
-using Ambev.DeveloperEvaluation.Application.Users.DeleteUser;
-using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.WebApi.Common;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.CreateSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.DeleteSale;
-using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale;
-using Ambev.DeveloperEvaluation.WebApi.Features.Users.DeleteUser;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -188,11 +184,11 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
 
             var response = await _mediator.Send(command, cancellationToken);
 
-            return Ok(new ApiResponseWithData<GetAllSalesResponse>
+            return Ok(new ApiResponseWithData<List<GetSaleResponse>>
             {
                 Success = true,
                 Message = "Sale retrieved successfully",
-                Data = _mapper.Map<GetAllSalesResponse>(response)
+                Data = _mapper.Map<List<GetSaleResponse>>(response)
             });
         }
     }

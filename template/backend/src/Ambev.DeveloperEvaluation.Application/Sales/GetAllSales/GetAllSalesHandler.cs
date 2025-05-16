@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales
 {
-    public class GetAllSalesHandler : IRequestHandler<GetAllSalesCommand, GetAllSalesResult>
+    public class GetAllSalesHandler : IRequestHandler<GetAllSalesCommand, List<GetSaleResult>>
     {
         private readonly ISaleRepository _saleRepository;
         private readonly IMapper _mapper;
@@ -16,12 +16,13 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales
             _saleRepository = saleRepository;
         }
 
-        public async Task<GetAllSalesResult> Handle(GetAllSalesCommand request, CancellationToken cancellationToken)
+        public async Task<List<GetSaleResult>> Handle(GetAllSalesCommand request, CancellationToken cancellationToken)
         {
             var sale = await _saleRepository.GetAllAsync(cancellationToken);
 
             var saleResult = _mapper.Map<List<GetSaleResult>>(sale);
-            return new GetAllSalesResult { Sales = saleResult };
+            return saleResult;
+            //return new GetAllSalesResult { Sales = saleResult };
         }
     }
 }
