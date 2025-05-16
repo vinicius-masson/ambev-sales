@@ -21,8 +21,8 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales
             var sale = await _saleRepository.GetAllAsync(cancellationToken);
 
             var saleResult = _mapper.Map<List<GetSaleResult>>(sale);
+
             return saleResult;
-            //return new GetAllSalesResult { Sales = saleResult };
         }
     }
 }
